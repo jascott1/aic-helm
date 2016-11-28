@@ -1,0 +1,31 @@
+global:
+  deployment:
+    replicas: 1
+    control_node_label: openstack-control-plane
+    image:
+      api: quay.io/stackanetes/stackanetes-glance-api:newton 
+      registry: quay.io/stackanetes/stackanetes-glance-registry:newton 
+      init: quay.io/stackanetes/stackanetes-kolla-toolbox:newton
+  network:
+    port:
+      api: 9292
+      registry: 9191 
+    ip_address: "{{ .IP }}"
+  database:
+    address: mariadb
+    port: 3306
+    root_user: root
+    root_password: password
+    glance_database_name: glance
+    glance_password: password
+    glance_user: glance
+  glance:
+    admin_region_name: RegionOne 
+    admin_user: admin
+    admin_password: password
+    admin_project_name: admin
+  memcached:
+    address: memcached
+  misc:
+    workers: 8
+    debug: false
